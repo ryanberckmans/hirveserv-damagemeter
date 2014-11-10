@@ -70,8 +70,12 @@ local function renderDamageMeter()
   end
 end
 
-local function cmdDamageMeter(client)
+local function cmdDamageMeterAll(client)
   chat.msg("%s shows the damage meter:\n%s", client.name, renderDamageMeter())
+end
+
+local function cmdDamageMeter(client)
+  client:msg("Showing the damage meter to just you:\n%s", renderDamageMeter())
 end
 
 local function cmdDamageMeterReset(client)
@@ -81,6 +85,10 @@ end
 
 chat.command( "dm", "user", function(client)
   cmdDamageMeter(client)
+end, "Show damage meter to just you")
+
+chat.command( "dmall", "user", function(client)
+  cmdDamageMeterAll(client)
 end, "Show damage meter to all users")
 
 chat.command( "dmreset", "user", function(client)
